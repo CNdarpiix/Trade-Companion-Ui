@@ -1,0 +1,34 @@
+package com.charly.tradecompanion.trade_companion_ui;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class TradeCompanionApplication extends Application {
+
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        FXMLLoader MainLoader = new FXMLLoader(
+                TradeCompanionApplication.class.getResource("/fxml/MainLayout.fxml")
+        );
+
+        FXMLLoader DashboardLoader = new FXMLLoader(
+                TradeCompanionApplication.class.getResource("/fxml/DashboardView.fxml")
+        );
+
+        Scene MainScene = new Scene(MainLoader.load());
+        Scene DashboardScene = new Scene(DashboardLoader.load());
+
+        //contentPane.getChildren().add(DashboardScene);
+
+        primaryStage.setTitle("Trade Companion");
+
+        primaryStage.setScene(MainScene);
+
+        primaryStage.show();
+    }
+}

@@ -1,4 +1,4 @@
-package com.charly.tradecompanion.trade_companion_ui.controller.component;
+package com.charly.tradecompanion.trade_companion_ui.controller.component.trading;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

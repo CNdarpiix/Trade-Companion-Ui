@@ -5,7 +5,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.charly.tradecompanion.trade_companion_ui.controller.component.ProgressCardController"
+      fx:controller="com.charly.tradecompanion.trade_companion_ui.controller.component.trading.ProgressCardController"
       spacing="8">
 
     <Label fx:id="titreLabel"/>

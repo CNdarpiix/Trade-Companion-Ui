@@ -1,0 +1,47 @@
+/* SIDEBAR */
+
+.sidebar{
+    -fx-background-color: #0F172A;
+
+
+}
+
+/* NAV ITEM */
+.nav-item {
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-spacing: 12;
+
+    -fx-padding: 12 16;
+
+    -fx-background-radius: 10;
+
+    -fx-cursor: hand;
+
+    -fx-font: #ada4a4;
+}
+
+.nav-item:hover {
+
+    -fx-background-color: #1E293B;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0,0,0,.30),
+            12,
+            0,
+            0,
+            4
+    );
+
+}
+
+.nav-item-active {
+
+    -fx-background-color:#60A5FA22;
+
+    -fx-border-color:#60A5FA;
+
+    -fx-border-width:0 0 0 3;
+
+}

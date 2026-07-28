@@ -31,6 +31,14 @@ public class TradeCompanionApplication extends Application {
                 TradeCompanionApplication.class
                         .getResource("/css/global.css")
                         .toExternalForm());
+        MainScene.getStylesheets().add(
+                TradeCompanionApplication.class
+                        .getResource("/css/component/fundation/card.css")
+                        .toExternalForm());
+        MainScene.getStylesheets().add(
+                TradeCompanionApplication.class
+                        .getResource("/css/component/fundation/sideBar.css")
+                        .toExternalForm());
         //contentPane.getChildren().add(DashboardScene);
 
         primaryStage.setTitle("Trade Companion");

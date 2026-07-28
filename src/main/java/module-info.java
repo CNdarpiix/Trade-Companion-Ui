@@ -13,7 +13,7 @@ module com.charly.tradecompanion.trade_companion_ui {
 
     opens com.charly.tradecompanion.trade_companion_ui to javafx.fxml;
     opens com.charly.tradecompanion.trade_companion_ui.controller to javafx.fxml;
-
+    opens com.charly.tradecompanion.trade_companion_ui.controller.component to javafx.fxml;
 
 
     opens com.charly.tradecompanion.trade_companion_ui.models.dashBoard

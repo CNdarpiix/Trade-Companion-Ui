@@ -1,0 +1,119 @@
+/* ==========================================================
+   Trade Companion
+   Light Theme
+   ========================================================== */
+
+/* ===========================
+   Root
+   =========================== */
+
+.root {
+
+    -fx-background-color: linear-gradient(
+            to bottom,
+            #FFFFFF 0%,
+            #F8FAFC 55%,
+            #EEF2F7 100%
+    );
+
+}
+
+/* ===========================
+   Surfaces
+   =========================== */
+
+.sidebar {
+
+    -fx-background-color: #FFFFFF;
+
+}
+
+.card {
+
+    -fx-background-color: #FFFFFF;
+
+}
+
+.hover-card {
+
+    -fx-background-color: #F1F5F9;
+
+}
+
+/* ===========================
+   Text
+   =========================== */
+
+.text-primary {
+
+    -fx-text-fill: #111827;
+
+}
+
+.text-secondary {
+
+    -fx-text-fill: #6B7280;
+
+}
+
+/* ===========================
+   Trading
+   =========================== */
+
+.buy {
+
+    -fx-text-fill: #10B981;
+
+}
+
+.sell {
+
+    -fx-text-fill: #DC2626;
+
+}
+
+.range {
+
+    -fx-text-fill: #D4AF37;
+
+}
+
+/* ===========================
+   Border
+   =========================== */
+
+.border {
+
+    -fx-border-color: #D1D5DB;
+
+}
+
+/* ===========================
+   Focus
+   =========================== */
+
+.focus {
+
+    -fx-focus-color: #93C5FD;
+
+}
+
+/* ===========================
+   Separator
+   =========================== */
+
+.separator {
+
+    -fx-background-color: #E5E7EB;
+
+}
+
+/* ===========================
+   Disabled
+   =========================== */
+
+.disabled {
+
+    -fx-opacity: 0.55;
+
+}

@@ -21,8 +21,16 @@ public class TradeCompanionApplication extends Application {
         );
 
         Scene MainScene = new Scene(MainLoader.load());
-        Scene DashboardScene = new Scene(DashboardLoader.load());
 
+        MainScene.getStylesheets().add(
+                TradeCompanionApplication.class
+                        .getResource("/css/theme-dark.css")
+                        .toExternalForm());
+
+        MainScene.getStylesheets().add(
+                TradeCompanionApplication.class
+                        .getResource("/css/global.css")
+                        .toExternalForm());
         //contentPane.getChildren().add(DashboardScene);
 
         primaryStage.setTitle("Trade Companion");

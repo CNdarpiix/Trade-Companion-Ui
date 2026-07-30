@@ -9,34 +9,33 @@ module com.charly.tradecompanion.trade_companion_ui {
 
     requires com.fasterxml.jackson.databind;
 
-    exports com.charly.tradecompanion.trade_companion_ui;
+    exports app;
 
-    opens com.charly.tradecompanion.trade_companion_ui to javafx.fxml;
-    opens com.charly.tradecompanion.trade_companion_ui.controller to javafx.fxml;
-    opens com.charly.tradecompanion.trade_companion_ui.controller.component.fundation to javafx.fxml;
-    opens com.charly.tradecompanion.trade_companion_ui.controller.component.trading to javafx.fxml;
+    opens app to javafx.graphics, javafx.fxml;
 
 
+    opens components.fundation.badge to javafx.fxml;
+    opens components.fundation.button to javafx.fxml;
+    opens components.fundation.card to javafx.fxml;
+    opens components.fundation.chip to javafx.fxml;
+    opens components.fundation.header to javafx.fxml;
+    opens components.fundation.navitem to javafx.fxml;
+    opens components.fundation.slidebar to javafx.fxml;
+    opens components.trading.progresscard to javafx.fxml;
 
-    opens com.charly.tradecompanion.trade_companion_ui.models.dashBoard
-            to com.fasterxml.jackson.databind;
+    opens layouts.main to javafx.fxml;
 
-    opens com.charly.tradecompanion.trade_companion_ui.models.trade
-            to com.fasterxml.jackson.databind;
+    opens pages.dashboard to javafx.fxml;
+    opens pages.trade to javafx.fxml;
 
-    opens com.charly.tradecompanion.trade_companion_ui.models.table
-            to com.fasterxml.jackson.databind;
+    opens config.models.evaluation to com.fasterxml.jackson.databind;
+    opens config.models.criterion to com.fasterxml.jackson.databind;
+    opens config.models.table to com.fasterxml.jackson.databind;
 
-    opens com.charly.tradecompanion.trade_companion_ui.models.criterion
-            to com.fasterxml.jackson.databind;
+    opens pages.dashboard.models to com.fasterxml.jackson.databind;
+    opens pages.trade.models to com.fasterxml.jackson.databind;
 
-    opens com.charly.tradecompanion.trade_companion_ui.models.evaluation
-            to com.fasterxml.jackson.databind;
+    opens pages.analysis to com.fasterxml.jackson.databind;
 
-    opens com.charly.tradecompanion.trade_companion_ui.models
-            to com.fasterxml.jackson.databind;
-
-    opens com.charly.tradecompanion.trade_companion_ui.enums
-            to com.fasterxml.jackson.databind;
 
 }

@@ -71,7 +71,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.charly.tradecompanion.trade_companion_ui/com.charly.tradecompanion.trade_companion_ui.TradeCompanionApplication
+                                com.charly.tradecompanion.trade_companion_ui/TradeCompanionApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

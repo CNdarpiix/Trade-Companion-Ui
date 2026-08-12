@@ -11,14 +11,34 @@ public class TCButton extends Button {
         super();
         this.text = text;
         this.type = type;
-        if (type.equals(ButtonType.CARD)){
-            getStyleClass().addAll("card" , type.name().toLowerCase());
-        }else{
-            getStyleClass().addAll("button" , type.name().toLowerCase());
-        }
-
         setText(text);
 
+        if (type.equals(ButtonType.CARD)) {
+            getStyleClass().addAll(
+                    "card",
+                    type.name().toLowerCase()
+            );
+        } else {
+            getStyleClass().addAll(
+                    "button",
+                    type.
+                            name().
+                            toLowerCase()
+            );
+        }
 
     }
+
+    public void setType(ButtonType type) {
+        if (type != null) {
+            getStyleClass().remove(this.type.name().toLowerCase());
+            this.type = type ;
+            getStyleClass().add(this.type.name().toLowerCase());
+        } else {
+            getStyleClass().add(this.type.name().toLowerCase());
+        }
+
+    }
+
+
 }

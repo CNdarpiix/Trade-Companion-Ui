@@ -26,11 +26,20 @@ public class TCInput extends VBox {
 
         if (error != null && !error.isBlank()) {
             errorText.setText(error);
-            errorText.setDisable(false);
+            errorText.setVisible(false);
         }
 
         getStyleClass().addAll("input", type.name().toLowerCase());
         getChildren().addAll(text , textField , errorText);
 
     }
+
+    public String getText(){
+        return textField.getText();
+    }
+
+    public void isError(boolean t) {
+        errorText.setVisible(t);
+    }
+
 }

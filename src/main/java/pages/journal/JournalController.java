@@ -30,10 +30,10 @@ public class JournalController {
         titleLabel = ComponentsConfig.createLabel("JOURNAL", List.of("title-h1", "text-primary"));
 
         openedTrade = new VBox();
-        openedTrade.getChildren().addAll(ComponentsConfig.createSeparator() , ComponentsConfig.createLabel("TRADE OPEN" , List.of("title-h2" , "text-primary")));
+        openedTrade.getChildren().addAll(ComponentsConfig.createSeparator() , ComponentsConfig.createLabel("TRADE OPENED" , List.of("title-h2" , "text-primary")));
 
         closedTrade = new VBox();
-        closedTrade.getChildren().addAll(  ComponentsConfig.createSeparator() ,ComponentsConfig.createLabel("TRADE OPEN" , List.of("title-h2" , "text-primary")));
+        closedTrade.getChildren().addAll(  ComponentsConfig.createSeparator() ,ComponentsConfig.createLabel("TRADE CLOSED" , List.of("title-h2" , "text-primary")));
 
 
         tradeList

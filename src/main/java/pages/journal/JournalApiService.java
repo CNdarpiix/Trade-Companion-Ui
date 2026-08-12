@@ -2,6 +2,7 @@ package pages.journal;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import model.trade.TradeResponse;
 import util.ApiConfig;
 
@@ -17,8 +18,8 @@ public class JournalApiService {
 
     private final HttpClient client = getClient();
 
-    private final ObjectMapper mapper = new ObjectMapper();
-
+    private final ObjectMapper mapper = new ObjectMapper()
+            .registerModule(new JavaTimeModule());
     public List<TradeResponse> getAllTrades() {
         try {
             HttpRequest request = HttpRequest.newBuilder()

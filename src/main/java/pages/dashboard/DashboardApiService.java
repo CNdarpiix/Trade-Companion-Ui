@@ -1,5 +1,6 @@
 package pages.dashboard;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import model.DashBoardResponse;
 import util.ApiConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +15,8 @@ import static util.HttpClientUtil.getClient;
 public class DashboardApiService {
     private final HttpClient client = getClient();
 
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper()
+            .registerModule(new JavaTimeModule());
 
 
     public DashBoardResponse getDashboard() {

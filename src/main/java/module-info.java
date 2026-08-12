@@ -10,6 +10,7 @@ module com.charly.tradecompanion.trade_companion_ui {
     requires com.fasterxml.jackson.databind;
     requires java.smartcardio;
     requires java.sql;
+    requires com.fasterxml.jackson.datatype.jsr310;
 
     exports app;
 

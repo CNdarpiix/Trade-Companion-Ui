@@ -16,9 +16,9 @@ public class TradeCompanionApplication extends Application {
                 TradeCompanionApplication.class.getResource("/layouts/main/MainLayout.fxml")
         );
 
-        FXMLLoader DashboardLoader = new FXMLLoader(
-                TradeCompanionApplication.class.getResource("/pages/dashboard/DashboardView.fxml")
-        );
+//        FXMLLoader DashboardLoader = new FXMLLoader(
+//                TradeCompanionApplication.class.getResource("/pages/dashboard/DashboardView.fxml")
+//        );
 
         Scene MainScene = new Scene(MainLoader.load());
 
@@ -31,14 +31,33 @@ public class TradeCompanionApplication extends Application {
                 TradeCompanionApplication.class
                         .getResource("/layouts/main/global.css")
                         .toExternalForm());
+
+
+        MainScene.getStylesheets().add(
+                TradeCompanionApplication.class
+                        .getResource("/navigation/sideBar.css")
+                        .toExternalForm());
+
+
         MainScene.getStylesheets().add(
                 TradeCompanionApplication.class
                         .getResource("/components/fundation/card/card.css")
                         .toExternalForm());
         MainScene.getStylesheets().add(
                 TradeCompanionApplication.class
-                        .getResource("/components/fundation/sidebar/sideBar.css")
+                        .getResource("/components/fundation/button/button.css")
                         .toExternalForm());
+        MainScene.getStylesheets().add(
+                TradeCompanionApplication.class
+                        .getResource("/components/fundation/input/input.css")
+                        .toExternalForm());
+
+
+        MainScene.getStylesheets().add(
+                TradeCompanionApplication.class
+                        .getResource("/pages/page.css")
+                        .toExternalForm());
+
         //contentPane.getChildren().add(DashboardScene);
 
         primaryStage.setTitle("Trade Companion");

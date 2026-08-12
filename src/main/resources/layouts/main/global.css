@@ -13,6 +13,8 @@
 
 }
 
+
+
 /* ===========================
    Typography
    =========================== */
@@ -21,6 +23,7 @@
 
     -fx-font-size: 32px;
     -fx-font-weight: bold;
+
 
 }
 
@@ -37,6 +40,13 @@
     -fx-font-weight: bold;
 
 }
+.title-h4 {
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+}
+
 
 .value {
 
@@ -84,3 +94,4 @@
     -fx-alignment: center-right;
 
 }
+

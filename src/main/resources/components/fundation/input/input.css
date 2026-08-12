@@ -1,0 +1,33 @@
+.input {
+
+   /*
+   -fx-background-color: -surface-secondary;
+   -fx-border-color: -border-color;
+    -fx-border-radius: 10;
+
+    -fx-background-radius: 10;
+    */
+    -fx-text-fill: -text-primary;
+
+    -fx-prompt-text-fill: -text-secondary;
+    -fx-padding: 10 14;
+    -fx-font-size: 11;
+
+}
+.input:focused {
+
+    -fx-border-color: -color-primary;
+
+}
+.text {
+
+}
+.password{
+
+}
+.number{
+
+}
+.search{
+    -fx-padding: 10 16;
+}

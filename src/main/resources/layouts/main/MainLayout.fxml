@@ -11,17 +11,7 @@
             prefHeight="400.0" prefWidth="600.0">
     <left>
 
-        <VBox fx:id="sidebar" spacing="12" prefWidth="130" prefHeight="80" >
-
-            <VBox fx:id="logoBox"/>
-
-            <VBox fx:id="navigation" />
-
-            <Region VBox.vgrow="ALWAYS"/>
-
-            <Label text="v0.1"/>
-
-        </VBox>
+        <StackPane fx:id="sidebar" prefWidth="150" prefHeight="80" />
 
     </left>
 

@@ -1,11 +1,13 @@
 package layouts.main;
 
-import components.fundation.navitem.NavItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import navigation.Page;
+import navigation.SidebarController;
+import navigation.SidebardService;
+import pages.dashboard.DashboardController;
 
 public class MainLayoutController {
 
@@ -13,26 +15,57 @@ public class MainLayoutController {
     private StackPane contentPane;
 
     @FXML
-    private VBox sidebar;
+    private StackPane sidebar;
 
-    @FXML
-    private VBox logoBox;
+    private Parent dashboard;
+    private Parent analysis;
+    private Parent trade;
+    private Parent journal;
+    private Parent configuration;
 
-    @FXML
-    private VBox navigation;
 
 
-    private void loadView(String fxml) {
+    private void loadView() {
 
         try {
-
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource(fxml)
+            FXMLLoader sidebarLoader = new FXMLLoader(
+                    getClass().getResource("/navigation/sidebar.fxml")
             );
+            Parent sidebarView = sidebarLoader.load();
 
-            Parent view = loader.load();
+            FXMLLoader dashboardLoader = new FXMLLoader(
+                    getClass().getResource("/pages/dashboard/DashboardView.fxml")
+            );
+            dashboard = dashboardLoader.load();
 
-            contentPane.getChildren().setAll(view);
+
+            FXMLLoader analysisLoader = new FXMLLoader(
+                    getClass().getResource("/pages/analysis/AnalysisView.fxml")
+            );
+            analysis = analysisLoader.load();
+
+
+            FXMLLoader tradeLoader = new FXMLLoader(
+                    getClass().getResource("/pages/trade/CreateTradeView.fxml")
+            );
+            trade = tradeLoader.load();
+
+
+            FXMLLoader journalLoader = new FXMLLoader(
+                    getClass().getResource("/pages/journal/JournalView.fxml")
+            );
+            journal = journalLoader.load();
+
+
+            FXMLLoader configurationLoader = new FXMLLoader(
+                    getClass().getResource("/pages/configuration/ConfigurationView.fxml")
+            );
+            configuration = configurationLoader.load();
+
+
+            contentPane.getChildren().setAll(dashboard);
+            sidebar.getChildren()
+                    .setAll(sidebarView);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,26 +73,33 @@ public class MainLayoutController {
 
     }
 
-    private void setNav(){
-        navigation.getChildren().add(new NavItem("Dashboard"
-                //, dashboardIcon ( mettre les icons
-                ));
-        navigation.getChildren().add(new NavItem("Trades"
-                //, tradesIcon
-                ));
-        navigation.getChildren().add(new NavItem("Journal"
-                //, journalIcon
-        ));
-        navigation.getChildren().add(new NavItem("Configuration"
-                //, configIcon
-                ));
 
+    public void loadPage(Page page) {
+
+        switch (page) {
+
+            case DASHBOARD ->
+                    contentPane.getChildren().setAll(dashboard);
+
+            case TRADE ->
+                    contentPane.getChildren().setAll(trade);
+
+            case ANALYSIS ->
+                    contentPane.getChildren().setAll(analysis);
+
+            case JOURNAL ->
+                    contentPane.getChildren().setAll(journal);
+
+            case CONFIGURATION ->
+                    contentPane.getChildren().setAll(configuration);
+        }
+        SidebarController.setActivePage(page);
     }
 
     @FXML
     public void initialize() {
-        loadView("/pages/dashboard/DashboardView.fxml");
-        setNav();
+        loadView();
+        SidebardService.setMainController(this);
     }
 
 

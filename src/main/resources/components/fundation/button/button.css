@@ -1,0 +1,90 @@
+.button {
+
+    -fx-cursor: hand;
+
+    -fx-background-radius: 10;
+
+    -fx-border-radius: 10;
+
+    -fx-padding: 10 20;
+
+    -fx-font-size: 14;
+
+    -fx-font-weight: bold;
+
+}
+
+.primary {
+
+    -fx-background-color: -color-primary;
+
+    -fx-text-fill: white;
+
+}
+
+.secondary {
+
+    -fx-background-color: -surface-secondary;
+
+    -fx-text-fill: -text-primary;
+
+}
+.buy {
+
+    -fx-background-color: #16A34A;
+
+    -fx-text-fill: white;
+
+}
+.sell {
+
+    -fx-background-color: #DC2626;
+
+    -fx-text-fill: white;
+
+}
+.warning {
+
+    -fx-background-color: #F59E0B;
+
+    -fx-text-fill: white;
+
+}
+.ghost {
+
+    -fx-background-color: transparent;
+
+    -fx-border-color: -border-color;
+
+    -fx-border-width: 1;
+
+    -fx-text-fill: -text-primary;
+
+}
+.outline {
+
+    -fx-background-color: transparent;
+
+    -fx-border-color: -color-primary;
+
+    -fx-border-width: 2;
+
+    -fx-text-fill: -color-primary;
+
+}
+/*states*/
+.button:hover {
+
+    -fx-opacity: .90;
+
+}
+.button:pressed {
+
+    -fx-opacity: .75;
+
+}
+.button:disabled {
+
+    -fx-opacity: .45;
+
+}

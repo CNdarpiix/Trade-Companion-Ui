@@ -1,0 +1,11 @@
+.tradeContent {
+    -fx-min-width:160;
+
+    -fx-min-height:99;
+
+    -fx-max-width:500;
+
+    -fx-max-height:600;
+
+}
+

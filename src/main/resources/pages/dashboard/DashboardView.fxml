@@ -12,20 +12,23 @@
             prefHeight="400.0" prefWidth="600.0">
     <center>
 
-        <VBox alignment="CENTER" spacing="10">
+        <VBox alignment="TOP_LEFT" fx:id="centerVBox">
 
-            <Label text="Dashboard" >
+            <Label text="DASHBOARD">
                 <styleClass>
-                    <String fx:value="title-h2"/>
+                    <String fx:value="title-h1"/>
                     <String fx:value="text-primary"/>
                 </styleClass>
             </Label>
+            <Label text="Let's look at everything.">
+                <styleClass>
+                    <String fx:value="title-h4"/>
+                    <String fx:value="text-secondary"/>
+                </styleClass>
+            </Label>
+            <Separator/>
 
-            <FlowPane VBox.vgrow="ALWAYS" hgap="20" vgap="20"  alignment="TOP_CENTER" fx:id="cardsContainer">
-
-            </FlowPane>
-
-
+            <VBox VBox.vgrow="ALWAYS" spacing="30" fx:id="cardsContainer"/>
 
         </VBox>
 

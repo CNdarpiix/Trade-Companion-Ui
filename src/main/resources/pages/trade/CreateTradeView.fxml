@@ -8,14 +8,8 @@
 
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="pages.journal.JournalController"
+           fx:controller="pages.trade.CreateTradeController"
            prefHeight="400.0" prefWidth="600.0">
-
-    <VBox fx:id="journalContent"
-          alignment="TOP_LEFT"
-          fillWidth="true"
-          StackPane.alignment="TOP_LEFT"/>
-
-
+    <VBox fx:id="contentVBox"/>
 
 </StackPane>

@@ -1,29 +1,40 @@
 package pages.dashboard;
 
-import components.trading.progresscard.ProgressCardController;
-import pages.dashboard.models.DashBoardResponse;
-import services.DashboardApiService;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import model.DashBoardResponse;
+import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import navigation.Page;
+import navigation.SidebardService;
+import util.ComponentsConfig;
 
-import java.io.IOException;
+
+import java.util.List;
 
 public class DashboardController {
     private final DashboardApiService dashboardApiService = new DashboardApiService();
-
+    private final SidebardService sidebardService = new SidebardService();
 
     @FXML
-    private FlowPane cardsContainer;
+    private VBox cardsContainer;
+
+    @FXML
+    private VBox centerVBox;
+
+    private final List<String> style = List.of("title-h3", "text-primary");
 
 
     private void initializeDashboard() {
         DashBoardResponse dashboard = dashboardApiService.getDashboard();
-
         setStats(dashboard);
+        setQuickLinks();
+        centerVBox.setPadding(new Insets(10, 30, 10, 30));
+
+
     }
 
     private void setStats(DashBoardResponse dashboard) {
@@ -34,40 +45,68 @@ public class DashboardController {
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
-        for (int i = 0; i < 5; i++)
-            addCard("W | R", "100 %");
+
+        VBox activity = ComponentsConfig.createProgressCard("TOTAL ACTIVITY", 100.0, style);
+        VBox WR = ComponentsConfig.createProgressCard("WINRATE", 67.0, style);
+        VBox PL = ComponentsConfig.createCard();
+        PL.getChildren().addAll(
+                ComponentsConfig.createLabel("P&L SCORE", style),
+                ComponentsConfig.createSeparator(),
+                ComponentsConfig.createLabel("45", List.of("title-h4", "text-secondary"))
+        );
+
+        FlowPane infoMenu = new FlowPane();
+
+        infoMenu.setAlignment(Pos.CENTER);
+        infoMenu.getChildren().addAll(activity, WR, PL);
+
+
+        cardsContainer.getChildren().add(infoMenu);
 
     }
 
-    private void addProgressCard(String title, Double value) throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/components/trading/progresscard/ProgressCard.fxml")
+    private void setQuickLinks() {
+
+
+        VBox analysis = newQuickLinks(Page.ANALYSIS);
+        analysis.getChildren().addAll(
+                ComponentsConfig.createLabel("ANALYSIS", style),
+                ComponentsConfig.createLabel("Need to analyze?", List.of("title-h4", "text-secondary"))
         );
 
-        Node card = loader.load();
 
-        ProgressCardController controller = loader.getController();
-        controller.setStat(title, value, "");
+        VBox journal = newQuickLinks(Page.JOURNAL);
+        journal.getChildren().addAll(
+                ComponentsConfig.createLabel("JOURNAL", style),
+                ComponentsConfig.createLabel("a good observation.", List.of("title-h4", "text-secondary"))
+        );
 
-        cardsContainer.getChildren().add(card);
+
+        VBox stats = newQuickLinks(Page.TRADE);
+        stats.getChildren().addAll(
+                ComponentsConfig.createLabel("STATS", style),
+                ComponentsConfig.createLabel("You can never have enough.", List.of("title-h4", "text-secondary"))
+        );
+
+        VBox configuration = newQuickLinks(Page.CONFIGURATION);
+        configuration.getChildren().addAll(
+                ComponentsConfig.createLabel("SETTINGS", style),
+                ComponentsConfig.createLabel("Got a problem?", List.of("title-h4", "text-secondary"))
+        );
+
+        FlowPane quickLinks = new FlowPane(analysis, journal, stats, configuration);
+        quickLinks.setAlignment(Pos.CENTER);
+
+        cardsContainer.getChildren().add(quickLinks);
     }
 
-    private void addCard(String info, String value) {
-        VBox card = new VBox();
-        card.getStyleClass().add("card");
+    public VBox newQuickLinks(Page page) {
+        VBox item = ComponentsConfig.createCard();
+        item.setOnMouseClicked(event -> {
+            SidebardService.navigate(page);
+        });
 
-        Label infoTitle = new Label(info);
-        infoTitle.getStyleClass().addAll("title-h3", "text-primary");
-
-        Label valueT = new Label(value);
-        valueT.getStyleClass().addAll("value", "text-primary");
-
-        card.getChildren().addAll(infoTitle, valueT);
-
-        cardsContainer.getChildren().add(card);
-        card.prefWidthProperty().bind(
-                cardsContainer.widthProperty().divide(5)
-        );
+        return item;
     }
 
     @FXML

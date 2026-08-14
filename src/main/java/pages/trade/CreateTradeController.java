@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.trade.CreateTradeRequest;
 import model.trade.TradeResponse;
+import pages.journal.JournalController;
 
 
 public class CreateTradeController {
@@ -111,7 +112,7 @@ public class CreateTradeController {
             request.setOpeningNote(openingNote.getText());
 
             TradeResponse trade = tradeApiService.createTrade(request);
-            System.out.println(trade.getId());
+            JournalController.refreshTrade();
         });
 
         contentVBox.getStyleClass().addAll("card", "tradeContent", "center");

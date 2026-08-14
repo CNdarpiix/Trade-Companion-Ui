@@ -1,6 +1,7 @@
 package util;
 
 import components.fundation.card.Card;
+import components.fundation.card.TradeCard;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -34,7 +35,7 @@ public final class ComponentsConfig {
         return separator;
     }
 
-    public static Card createTradeCard(TradeResponse trade) {
+    public static TradeCard createTradeCard(TradeResponse trade) {
 
         Label directionLabel = createLabel(trade.getDirection().name(), List.of("title-h4"));
 
@@ -42,7 +43,7 @@ public final class ComponentsConfig {
         Label statutLabel = createLabel(trade.getStatus().name(), List.of("text-secondary", "title-h4"));
 
 
-        Card card = new Card();
+        TradeCard card = new TradeCard(trade.getId());
 
         if (trade.getDirection().equals(TradeDirection.SHORT))
             directionLabel.getStyleClass().add("sell");

@@ -29,6 +29,12 @@ public final class ComponentsConfig {
         return textLabel;
     }
 
+    public static VBox createLabel(String texte , String optionalTexte , Collection<String> styleClass , Collection<String> optionalStyleClass){
+        if (optionalTexte.isEmpty())
+            return new VBox(createLabel(texte , styleClass));
+        return new VBox(createLabel(texte , styleClass) , createLabel(optionalTexte , optionalStyleClass) );
+    }
+
     public static Separator createSeparator() {
         Separator separator = new Separator();
         separator.getStyleClass().add("separator");
@@ -43,7 +49,7 @@ public final class ComponentsConfig {
         Label statutLabel = createLabel(trade.getStatus().name(), List.of("text-secondary", "title-h4"));
 
 
-        TradeCard card = new TradeCard(trade.getId());
+        TradeCard card = new TradeCard(trade);
 
         if (trade.getDirection().equals(TradeDirection.SHORT))
             directionLabel.getStyleClass().add("sell");

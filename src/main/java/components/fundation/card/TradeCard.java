@@ -1,14 +1,22 @@
 package components.fundation.card;
 
+import components.fundation.tradeDetail.TradeDetail;
 import model.trade.TradeResponse;
+import pages.journal.JournalController;
 
 public class TradeCard extends Card{
 
     private Long tradeId ;
 
-    public TradeCard(Long tradeId){
+    private TradeDetail tradeDetail;
+
+    public TradeCard(TradeResponse trade){
         super();
-        this.tradeId = tradeId ;
+        tradeDetail=new TradeDetail(trade);
+        this.tradeId = trade.getId() ;
+        setOnMouseClicked(event ->{
+            JournalController.showOverlay(tradeDetail);
+        });
     }
 
 

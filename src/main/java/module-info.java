@@ -17,10 +17,9 @@ module com.charly.tradecompanion.trade_companion_ui {
     opens app to javafx.graphics, javafx.fxml;
 
 
-    opens components.fundation.badge to javafx.fxml;
     opens components.fundation.button to javafx.fxml;
     opens components.fundation.card to javafx.fxml;
-    opens components.fundation.chip to javafx.fxml;
+    opens components.fundation.tradeDetail to javafx.fxml;
     opens components.fundation.header to javafx.fxml;
     opens components.fundation.navitem to javafx.fxml;
     opens components.trading.progresscard to javafx.fxml;

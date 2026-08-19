@@ -27,6 +27,7 @@ public class TradeResponse {
 
     private Double profit;
 
+
     private String openingNote;
 
     private String closingNote;

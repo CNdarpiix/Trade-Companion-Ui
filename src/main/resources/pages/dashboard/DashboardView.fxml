@@ -20,12 +20,14 @@
                     <String fx:value="text-primary"/>
                 </styleClass>
             </Label>
+
             <Label text="Let's look at everything.">
                 <styleClass>
                     <String fx:value="title-h4"/>
                     <String fx:value="text-secondary"/>
                 </styleClass>
             </Label>
+
             <Separator/>
 
             <VBox VBox.vgrow="ALWAYS" spacing="30" fx:id="cardsContainer"/>

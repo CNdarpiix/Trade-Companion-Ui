@@ -3,7 +3,6 @@ package pages.dashboard;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import model.DashBoardResponse;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;

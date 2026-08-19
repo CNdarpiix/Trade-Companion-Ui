@@ -1,13 +1,19 @@
 package pages.journal;
 
+import components.fundation.button.ButtonType;
+import components.fundation.button.TCButton;
+import components.fundation.tradeDetail.TradeDetail;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import pages.trade.TradeDirection;
 import pages.trade.TradeStatus;
 import model.trade.TradeResponse;
@@ -22,6 +28,10 @@ public class JournalController {
     @FXML
     private VBox journalContent;
 
+    @FXML
+    private VBox overlayContent;
+
+    private static VBox overlayVBox;
 
     private VBox openedTrade;
 
@@ -76,17 +86,42 @@ public class JournalController {
 
 
     private void loadPage() {
+
+
         titleLabel = ComponentsConfig.createLabel("JOURNAL", List.of("title-h1", "text-primary"));
+
+
 
         openedTrade = new VBox();
         openedTrade.getChildren().addAll(ComponentsConfig.createSeparator(), ComponentsConfig.createLabel("TRADE OPENED    ", List.of("title-h2", "text-primary")));
+        openedTrade.setSpacing(10);
 
         closedTrade = new VBox();
         closedTrade.getChildren().addAll(ComponentsConfig.createSeparator(), ComponentsConfig.createLabel("TRADE CLOSED", List.of("title-h2", "text-primary")));
+        closedTrade.setSpacing(10);
 
         journalContent.getStyleClass().add("journalContent");
         journalContent.getChildren().addAll(titleLabel, openedTrade, closedTrade);
+
+        loadOverlay();
     }
+
+    private void loadOverlay() {
+
+        overlayContent.getStyleClass().add("card");
+
+
+        overlayVBox = new VBox();
+        overlayContent.getChildren().addAll(overlayVBox);
+    }
+
+    public static void showOverlay(TradeDetail tradeDetail) {
+        if (tradeDetail == null)
+            overlayVBox.getChildren().setAll();
+        else
+            overlayVBox.getChildren().setAll(tradeDetail);
+    }
+
 
     public static void refreshTrade() {
         tradeListProperty.setAll(

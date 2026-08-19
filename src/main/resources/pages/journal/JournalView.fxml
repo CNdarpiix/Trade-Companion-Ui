@@ -6,16 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="pages.journal.JournalController"
-           prefHeight="400.0" prefWidth="600.0">
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="pages.journal.JournalController"
+      spacing="20">
 
     <VBox fx:id="journalContent"
-          alignment="TOP_LEFT"
-          fillWidth="true"
-          StackPane.alignment="TOP_LEFT"/>
+          HBox.hgrow="ALWAYS"
+          minWidth="250"/>
 
+    <VBox fx:id="overlayContent"
+          prefWidth="350"
+          minWidth="300"
+          maxWidth="500"/>
 
-
-</StackPane>
+</HBox>

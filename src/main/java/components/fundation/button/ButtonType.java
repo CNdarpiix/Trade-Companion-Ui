@@ -8,7 +8,7 @@ public enum ButtonType {
     SUCCESS,
     DANGER,
     WARNING,
-    GHOST,
+    IMAGE,
     CARD ,
     OUTLINE
 }

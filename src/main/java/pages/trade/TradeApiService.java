@@ -44,4 +44,27 @@ public class TradeApiService {
             throw new RuntimeException(e);
         }
     }
+
+    public TradeResponse updateTrade(UpdateTradeRequest request, Long id) {
+        try {
+
+            String json = mapper.writeValueAsString(request);
+
+            HttpRequest httpRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(ApiConfig.BASE_URL + "/trade/" + id))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+
+            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+            return mapper.readValue(
+                    response.body(),
+                    TradeResponse.class
+            );
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

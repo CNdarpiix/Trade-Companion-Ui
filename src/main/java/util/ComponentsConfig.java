@@ -2,6 +2,7 @@ package util;
 
 import components.fundation.card.Card;
 import components.fundation.card.TradeCard;
+import components.fundation.input.TCInput;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -111,6 +112,7 @@ public final class ComponentsConfig {
 //        );
         return card;
     }
+
 
 
 }

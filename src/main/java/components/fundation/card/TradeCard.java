@@ -15,7 +15,7 @@ public class TradeCard extends Card{
         tradeDetail=new TradeDetail(trade);
         this.tradeId = trade.getId() ;
         setOnMouseClicked(event ->{
-            JournalController.showOverlay(tradeDetail);
+            JournalController.showOverlay(tradeDetail ,tradeId);
         });
     }
 

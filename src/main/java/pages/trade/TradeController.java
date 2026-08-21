@@ -7,6 +7,8 @@ import components.fundation.input.TCInput;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import org.w3c.dom.events.MouseEvent;
 
@@ -43,9 +45,15 @@ public abstract class TradeController {
 
     protected TCButton createTradeButton;
 
+    protected HBox buttons ;
+
+    protected TCButton closeTradeButton ;
+
+    protected TCButton updateTradeButton;
+
     protected VBox fillForm(VBox content) {
         if (profit != null)
-            content.getChildren().addAll(symbol, direction, price, profit, note, createTradeButton);
+            content.getChildren().addAll(symbol, direction, price, profit, note, buttons );
         else
             content.getChildren().addAll(symbol, direction, price, note, createTradeButton);
         return content;
@@ -71,7 +79,8 @@ public abstract class TradeController {
                 longButton.setType(ButtonType.OUTLINE);
             }
         });
-
+        Region region = new Region();
+        HBox.setHgrow(region , Priority.ALWAYS);
         direction = new HBox(longButton, shortButton);
         direction.setSpacing(10);
         direction.getStyleClass().add("center");
@@ -90,17 +99,5 @@ public abstract class TradeController {
 
     }
 
-    protected void updateForm() {
-        createForm();
-        exitPrice = new TCInput("Exit price", InputType.NUMBER, "EXIT PRICE ERROR");
-        profitLoose = new TCInput("Profit or Loose ", InputType.NUMBER, "PL ERROR");
-
-        profit = new HBox(exitPrice, profitLoose);
-
-        closingNote = new TCInput("Closing note", InputType.TEXT, "");
-
-        note = new HBox(openingNote, closingNote);
-
-    }
 
 }

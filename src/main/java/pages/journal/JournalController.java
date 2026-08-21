@@ -31,6 +31,8 @@ public class JournalController {
     @FXML
     private VBox overlayContent;
 
+    public static Long actualTradeId;
+
     private static VBox overlayVBox;
 
     private VBox openedTrade;
@@ -91,7 +93,6 @@ public class JournalController {
         titleLabel = ComponentsConfig.createLabel("JOURNAL", List.of("title-h1", "text-primary"));
 
 
-
         openedTrade = new VBox();
         openedTrade.getChildren().addAll(ComponentsConfig.createSeparator(), ComponentsConfig.createLabel("TRADE OPENED    ", List.of("title-h2", "text-primary")));
         openedTrade.setSpacing(10);
@@ -115,11 +116,13 @@ public class JournalController {
         overlayContent.getChildren().addAll(overlayVBox);
     }
 
-    public static void showOverlay(TradeDetail tradeDetail) {
+    public static void showOverlay(TradeDetail tradeDetail, Long tradeID) {
         if (tradeDetail == null)
-            overlayVBox.getChildren().setAll();
-        else
+            overlayVBox.getChildren().setAll();/// Utilisé pour fermer l'overlay / use to close the overlay
+        else {
+            actualTradeId = tradeID;
             overlayVBox.getChildren().setAll(tradeDetail);
+        }
     }
 
 

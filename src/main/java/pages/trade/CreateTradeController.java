@@ -1,11 +1,13 @@
 package pages.trade;
 
 
+import components.fundation.input.TCInput;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import layouts.main.MainLayoutController;
 import model.trade.CreateTradeRequest;
 import model.trade.TradeResponse;
+import model.trade.UpdateTradeRequest;
 import pages.journal.JournalController;
 
 
@@ -18,6 +20,8 @@ public class CreateTradeController extends TradeController {
     private void initialize() {
         loadPage();
     }
+
+
 
     private void loadPage() {
 
@@ -42,6 +46,8 @@ public class CreateTradeController extends TradeController {
                 request.setSymbol(symbol.getText());
                 symbol.isError(false);
             }
+
+
 
             if (isLong)
                 request.setDirection(TradeDirection.LONG);

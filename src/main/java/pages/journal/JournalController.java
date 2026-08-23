@@ -1,20 +1,9 @@
 package pages.journal;
 
-import components.fundation.button.ButtonType;
-import components.fundation.button.TCButton;
 import components.fundation.tradeDetail.TradeDetail;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import pages.trade.TradeDirection;
 import pages.trade.TradeStatus;
 import model.trade.TradeResponse;
 import util.ComponentsConfig;
@@ -35,56 +24,24 @@ public class JournalController {
 
     private static VBox overlayVBox;
 
-    private VBox openedTrade;
+    private static VBox openedTrade;
 
-    private VBox closedTrade;
+    private static VBox closedTrade;
 
     private Label titleLabel;
 
-    private static final ObservableList<TradeResponse> tradeList =
-            FXCollections.observableArrayList();
 
-    private static final ListProperty<TradeResponse> tradeListProperty =
-            new SimpleListProperty<>(tradeList);
-
-    private final ListChangeListener<TradeResponse> tradesListener = change -> {
-
-        while (change.next()) {
-
-            if (change.wasAdded()) {
-                for (TradeResponse trade : change.getAddedSubList()) {
-
-                    if (trade.getStatus() == TradeStatus.OPEN) {
-                        openedTrade.getChildren().add(
-                                ComponentsConfig.createTradeCard(trade)
-                        );
-                    } else {
-                        closedTrade.getChildren().add(
-                                ComponentsConfig.createTradeCard(trade)
-                        );
-                    }
-                }
-            }
-
-            if (change.wasRemoved()) {
-
-                for (TradeResponse trade : change.getRemoved()) {
-
-                    VBox container;
-
-                    if (trade.getStatus() == TradeStatus.OPEN) {
-                        container = openedTrade;
-                    } else {
-                        container = closedTrade;
-                    }
-
-                    container.getChildren().removeIf(node ->
-                            trade.getId().equals(node.getUserData())
-                    );
-                }
-            }
+    private static void addTradeCard(TradeResponse trade) {
+        if (trade.getStatus() == TradeStatus.OPEN) {
+            openedTrade.getChildren().add(
+                    ComponentsConfig.createTradeCard(trade)
+            );
+        } else {
+            closedTrade.getChildren().add(
+                    ComponentsConfig.createTradeCard(trade)
+            );
         }
-    };
+    }
 
 
     private void loadPage() {
@@ -92,14 +49,9 @@ public class JournalController {
 
         titleLabel = ComponentsConfig.createLabel("JOURNAL", List.of("title-h1", "text-primary"));
 
-
         openedTrade = new VBox();
-        openedTrade.getChildren().addAll(ComponentsConfig.createSeparator(), ComponentsConfig.createLabel("TRADE OPENED    ", List.of("title-h2", "text-primary")));
-        openedTrade.setSpacing(10);
-
         closedTrade = new VBox();
-        closedTrade.getChildren().addAll(ComponentsConfig.createSeparator(), ComponentsConfig.createLabel("TRADE CLOSED", List.of("title-h2", "text-primary")));
-        closedTrade.setSpacing(10);
+        loadJournal();
 
         journalContent.getStyleClass().add("journalContent");
         journalContent.getChildren().addAll(titleLabel, openedTrade, closedTrade);
@@ -127,19 +79,29 @@ public class JournalController {
 
 
     public static void refreshTrade() {
-        tradeListProperty.setAll(
-                journalService.getAllTrades()
-        );
+        openedTrade.getChildren().clear();
+        closedTrade.getChildren().clear();
+
+        loadJournal();
+
+        journalService.getAllTrades().forEach(JournalController::addTradeCard);
     }
 
     @FXML
     private void initialize() {
         loadPage();
 
-        tradeListProperty.addListener(tradesListener);
-
-        tradeListProperty.setAll(
-                journalService.getAllTrades()
-        );
+        refreshTrade();
     }
+
+    private static void loadJournal() {
+
+
+        openedTrade.getChildren().addAll(ComponentsConfig.createSeparator(), ComponentsConfig.createLabel("TRADE OPENED    ", List.of("title-h2", "text-primary")));
+        openedTrade.setSpacing(10);
+
+        closedTrade.getChildren().addAll(ComponentsConfig.createSeparator(), ComponentsConfig.createLabel("TRADE CLOSED", List.of("title-h2", "text-primary")));
+        closedTrade.setSpacing(10);
+    }
+
 }

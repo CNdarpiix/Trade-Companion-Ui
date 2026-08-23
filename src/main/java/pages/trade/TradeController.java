@@ -1,16 +1,13 @@
 package pages.trade;
 
-import components.fundation.button.ButtonType;
+import components.fundation.button.TCButtonType;
 import components.fundation.button.TCButton;
 import components.fundation.input.InputType;
 import components.fundation.input.TCInput;
-import javafx.event.EventHandler;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.events.MouseEvent;
 
 public abstract class TradeController {
 
@@ -62,21 +59,21 @@ public abstract class TradeController {
 
     protected void createForm() {
         symbol = new TCInput("Symbol", InputType.TEXT, "SYMBOL ERROR");
-        TCButton longButton = new TCButton("long", ButtonType.BUY);
-        TCButton shortButton = new TCButton("short", ButtonType.OUTLINE);
+        TCButton longButton = new TCButton("long", TCButtonType.BUY);
+        TCButton shortButton = new TCButton("short", TCButtonType.OUTLINE);
 
         longButton.setOnMouseClicked(event -> {
             if (!isLong) {
                 isLong = true;
-                shortButton.setType(ButtonType.OUTLINE);
-                longButton.setType(ButtonType.BUY);
+                shortButton.setType(TCButtonType.OUTLINE);
+                longButton.setType(TCButtonType.BUY);
             }
         });
         shortButton.setOnMouseClicked(event -> {
             if (isLong) {
                 isLong = false;
-                shortButton.setType(ButtonType.SELL);
-                longButton.setType(ButtonType.OUTLINE);
+                shortButton.setType(TCButtonType.SELL);
+                longButton.setType(TCButtonType.OUTLINE);
             }
         });
         Region region = new Region();
@@ -95,7 +92,7 @@ public abstract class TradeController {
 
         note = new HBox(openingNote);
 
-        createTradeButton = new TCButton("New trade", ButtonType.OUTLINE);
+        createTradeButton = new TCButton("New trade", TCButtonType.OUTLINE);
 
     }
 

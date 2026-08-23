@@ -1,6 +1,6 @@
 package pages.trade;
 
-import components.fundation.button.ButtonType;
+import components.fundation.button.TCButtonType;
 import components.fundation.button.TCButton;
 import components.fundation.input.InputType;
 import components.fundation.input.TCInput;
@@ -10,10 +10,9 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import layouts.main.MainLayoutController;
-import model.trade.TradeResponse;
-import model.trade.UpdateTradeRequest;
+import model.trade.*;
 import pages.journal.JournalController;
-import util.ComponentsConfig;
+
 
 public class UpdateTradeController extends TradeController {
     @FXML
@@ -38,21 +37,27 @@ public class UpdateTradeController extends TradeController {
 
         note = new HBox(openingNote, closingNote);
 
-        closeTradeButton = new TCButton("CLOSE TRADE", ButtonType.OUTLINE);
+        closeTradeButton = new TCButton("CLOSE TRADE", TCButtonType.OUTLINE);
+        closeTradeButton.setOnMouseClicked(event -> {
+            CloseTradeRequest request = closeTrade();
+            TradeResponse tradeResponse = tradeApiService.closeTrade(request, JournalController.actualTradeId);
+            JournalController.refreshTrade();
+            MainLayoutController.showPush("Trade Closed", JournalController.actualTradeId.toString());
+        });
 
-        updateTradeButton = new TCButton("UPDATE TRADE", ButtonType.OUTLINE);
+        updateTradeButton = new TCButton("UPDATE TRADE", TCButtonType.OUTLINE);
         updateTradeButton.setOnMouseClicked(event -> {
             UpdateTradeRequest request = updateTrade();
-            TradeResponse trade = tradeApiService.updateTrade(request , JournalController.actualTradeId);
+            TradeResponse trade = tradeApiService.updateTrade(request, JournalController.actualTradeId);
             JournalController.refreshTrade();
-            MainLayoutController.showPush("Trade updated" , JournalController.actualTradeId.toString());
+            MainLayoutController.showPush("Trade updated", JournalController.actualTradeId.toString());
         });
 
 
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
         buttons = new HBox(updateTradeButton, region, closeTradeButton);
-        /// faire le fill des différents champs si possible , adapter le bouton crée trade -> modifier trade
+        /// faire le fill des différents champs si possible
 
     }
 
@@ -94,7 +99,28 @@ public class UpdateTradeController extends TradeController {
         return request;
     }
 
-///   TradeResponse trade = tradeApiService.createTrade(request);
-///             JournalController.refreshTrade();
-///             MainLayoutController.showPush("New Trade Opened", "");
+    private CloseTradeRequest closeTrade() {
+        CloseTradeRequest request = new CloseTradeRequest();
+        ///EXITPRICE
+        if (!exitPrice.getText().isEmpty()) {
+            request.setExitPrice(Double.parseDouble(exitPrice.getText()));
+            exitPrice.isError(false);
+        }
+        else
+            exitPrice.isError(true);
+        ///PROFIT
+        if (!profitLoose.getText().isEmpty()) {
+            request.setProfit(Double.parseDouble(profitLoose.getText()));
+            profitLoose.isError(false);
+        }
+        else
+            profitLoose.isError(true);
+
+        ///CLOSING NOTE
+        request.setClosingNote(closingNote.getText());
+
+        return request;
+    }
+
+
 }

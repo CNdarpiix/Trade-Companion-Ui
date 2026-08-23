@@ -1,6 +1,6 @@
 package components.fundation.button;
 
-public enum ButtonType {
+public enum TCButtonType {
     PRIMARY,
     SECONDARY,
     BUY,

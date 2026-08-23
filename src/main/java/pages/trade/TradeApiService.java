@@ -1,7 +1,6 @@
 package pages.trade;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import model.trade.*;
@@ -62,6 +61,46 @@ public class TradeApiService {
                     response.body(),
                     TradeResponse.class
             );
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public TradeResponse closeTrade(CloseTradeRequest request, Long id) {
+        try {
+
+            String json = mapper.writeValueAsString(request);
+
+            HttpRequest httpRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(ApiConfig.BASE_URL + "/trade/" + id + "/close"))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+
+            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+            return mapper.readValue(
+                    response.body(),
+                    TradeResponse.class
+            );
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public TradeResponse removeTrade(Long id){
+        try {
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(ApiConfig.BASE_URL + "/trade/"+id))
+                    .DELETE()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            return mapper.readValue(response.body() , TradeResponse.class);
 
         } catch (Exception e) {
             throw new RuntimeException(e);

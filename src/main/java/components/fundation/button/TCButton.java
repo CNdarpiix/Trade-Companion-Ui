@@ -3,24 +3,22 @@ package components.fundation.button;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
-import org.w3c.dom.events.MouseEvent;
 
 public class TCButton extends Button {
 
     private String text;
-    private ButtonType type;
+    private TCButtonType type;
 
-    public TCButton(String text, ButtonType type) {
+    public TCButton(String text, TCButtonType type) {
         super();
         this.text = text;
         this.type = type;
         setText(text);
 
-        if (type.equals(ButtonType.CARD)) {
+        if (type.equals(TCButtonType.CARD)) {
             getStyleClass().add(
                     "card"
             );
@@ -59,7 +57,7 @@ public class TCButton extends Button {
         }
 
 
-    public void setType(ButtonType type) {
+    public void setType(TCButtonType type) {
         if (type != null) {
             getStyleClass().remove(this.type.name().toLowerCase());
             this.type = type;

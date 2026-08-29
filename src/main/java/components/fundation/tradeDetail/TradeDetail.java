@@ -1,5 +1,6 @@
 package components.fundation.tradeDetail;
 
+import components.fundation.TCDialog.TCDialog;
 import components.fundation.button.TCButtonType;
 import components.fundation.button.TCButton;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +42,7 @@ public class TradeDetail extends VBox {
         showDetails(trade);
     }
 
+    /// READ ONLY Mode
     private void showDetails(TradeResponse trade) {
 
         /// Edit button
@@ -103,6 +105,7 @@ public class TradeDetail extends VBox {
 
     }
 
+    /// READ & WRITE Mode
     private void showUpdateForm(TradeResponse trade) {
         TCButton backButton = new TCButton("<", TCButtonType.OUTLINE);
         backButton.setOnMouseClicked(event -> {
@@ -112,28 +115,35 @@ public class TradeDetail extends VBox {
         TCButton deleteButton = new TCButton("DELETE TRADE", TCButtonType.OUTLINE);
         deleteButton.setOnMouseClicked(event -> {
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            TCDialog alerte = new TCDialog("Delete trade " + trade.getId() + "?", "Are you sure you want to permanently delete this trade?");
 
-            alert.setTitle("Delete trade");
-            alert.setHeaderText("Delete trade " + trade.getId() + "?");
-            alert.setContentText("Are you sure you want to permanently delete this trade?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if (result.isPresent() && result.get() == ButtonType.OK) {
+            TCButton yesButton = new TCButton("YES", TCButtonType.BUY);
+            yesButton.setOnMouseClicked(event1 -> {
                 service.removeTrade(trade.getId());
                 JournalController.refreshTrade();
-                MainLayoutController.showPush(
+                MainLayoutController.createPush(
                         "TRADE REMOVED",
                         "" + trade.getId()
                 );
-            }
+                MainLayoutController.getDialogVBox().getChildren().remove(alerte);
+                showOverlay(null, null);
+            });
+
+            TCButton noButton = new TCButton("NO", TCButtonType.SELL);
+            noButton.setOnMouseClicked(event1 -> {
+                MainLayoutController.getDialogVBox().getChildren().remove(alerte);
+            });
+
+            alerte.getDialogContent().getChildren().addAll(yesButton, noButton);
+
+            MainLayoutController.showPush(alerte);
+
+            ///
         });
 
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
         buttons.getChildren().setAll(backButton, region, deleteButton);
-/// PRobelme avec la fléche bakc et tt
 
         try {
             FXMLLoader loader = new FXMLLoader(

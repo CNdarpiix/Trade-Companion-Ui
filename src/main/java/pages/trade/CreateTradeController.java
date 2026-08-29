@@ -1,13 +1,10 @@
 package pages.trade;
 
-
-import components.fundation.input.TCInput;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import layouts.main.MainLayoutController;
 import model.trade.CreateTradeRequest;
 import model.trade.TradeResponse;
-import model.trade.UpdateTradeRequest;
 import pages.journal.JournalController;
 
 
@@ -26,13 +23,9 @@ public class CreateTradeController extends TradeController {
     private void loadPage() {
 
 
-//        TCButton openButton = new TCButton("open" , ButtonType.BUY );
-//        TCButton closetButton = new TCButton("close" , ButtonType.SELL );
-
-//        HBox status = new HBox(openButton , closetButton);
 
 
-        contentVBox.getStyleClass().addAll("card", "tradeContent", "center");
+        contentVBox.getStyleClass().addAll( "tradeContent", "center");
         createForm();
         contentVBox = fillForm(contentVBox);
 
@@ -80,7 +73,7 @@ public class CreateTradeController extends TradeController {
 
             TradeResponse trade = tradeApiService.createTrade(request);
             JournalController.refreshTrade();
-            MainLayoutController.showPush("New Trade Opened", "");
+            MainLayoutController.createPush("New Trade Opened", "");
         });
 
     }

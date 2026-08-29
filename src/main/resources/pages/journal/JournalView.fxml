@@ -16,7 +16,6 @@
           minWidth="250"/>
 
     <VBox fx:id="overlayContent"
-          prefWidth="350"
           minWidth="300"
           maxWidth="500"/>
 

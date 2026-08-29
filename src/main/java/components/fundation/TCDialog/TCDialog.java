@@ -1,31 +1,35 @@
 package components.fundation.TCDialog;
 
-import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import util.ComponentsConfig;
+
+import java.util.List;
 
 
 public class TCDialog extends VBox {
-    private Label mainText;
-    private Label optionalText;
+    private HBox dialogContent;
 
     public TCDialog(String mainText, String optionalText) {
-
-        if (mainText.isEmpty())
-            this.mainText = new Label("No main Text");
-        else
-            this.mainText = new Label(mainText);
-
-        this.mainText.getStyleClass().addAll("title-h4", "text-primary", "center");
-        getChildren().add(this.mainText);
-
-        if (!optionalText.isEmpty()) {
-            this.optionalText = new Label(optionalText);
-            this.optionalText.getStyleClass().addAll("title-h4", "text-secondary");
-            getChildren().add(this.optionalText);
-        }
-
+        getChildren().addAll(
+                ComponentsConfig.createLabel(mainText, List.of("title-h4", "text-primary", "center")),
+                ComponentsConfig.createLabel(optionalText, List.of("title-h4", "text-secondary"))
+        );
         getStyleClass().addAll("card");
 
 
+    }
+
+    public TCDialog(String mainText) {
+        getChildren().add(ComponentsConfig.createLabel(mainText, List.of("title-h4", "text-primary", "center")));
+    }
+
+    public HBox getDialogContent() {
+        if (dialogContent == null) {
+            dialogContent = new HBox();
+            getChildren().add(dialogContent);
+        }
+
+        return dialogContent;
     }
 }

@@ -10,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import lombok.Getter;
 import navigation.Page;
 import navigation.SidebarController;
 import navigation.SidebardService;
@@ -19,7 +20,7 @@ import java.util.Stack;
 
 public class MainLayoutController {
     @FXML
-    private FlowPane dialogContent;
+    private VBox dialogContent;
 
     @FXML
     private StackPane contentPane;
@@ -27,13 +28,15 @@ public class MainLayoutController {
     @FXML
     private StackPane sidebar;
 
+    @Getter
     private static VBox dialogVBox;
 
     @FXML
     public void initialize() {
         loadViews();
-        loadDialogContent();
+
         SidebardService.setMainController(this);
+        loadDialogContent();
     }
 
 
@@ -94,22 +97,11 @@ public class MainLayoutController {
 
     private void loadDialogContent() {
         dialogVBox = new VBox();
-        dialogVBox.setMouseTransparent(true);
+        dialogVBox.setMaxWidth(500);
+        dialogVBox.setMinWidth(300);
         dialogContent.getChildren().add(dialogVBox);
-        dialogContent.setMouseTransparent(true);
-        showPush("teste", "vla le teste");
     }
 
-    public static void showPush(String mainText, String secondText) {
-        TCDialog dialog = new TCDialog(mainText, secondText);
-        dialogVBox.getChildren().add(dialog);
-
-        PauseTransition pause = new PauseTransition(Duration.seconds(5.0));
-
-        pause.setOnFinished(event -> dialogVBox.getChildren().remove(dialog));
-
-        pause.play();
-    }
 
     public void loadPage(Page page) {
 
@@ -128,5 +120,22 @@ public class MainLayoutController {
         SidebarController.setActivePage(page);
     }
 
+
+
+    public static void  createPush(String mainText, String secondText) {
+        TCDialog dialog = new TCDialog(mainText, secondText);
+        showPush(dialog);
+    }
+
+    public static void showPush(TCDialog dialog){
+
+        dialogVBox.getChildren().add(dialog);
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(5.0));
+
+        pause.setOnFinished(event -> dialogVBox.getChildren().remove(dialog));
+
+        pause.play();
+    }
 
 }

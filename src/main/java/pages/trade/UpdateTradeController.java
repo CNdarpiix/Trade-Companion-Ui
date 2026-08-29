@@ -42,7 +42,7 @@ public class UpdateTradeController extends TradeController {
             CloseTradeRequest request = closeTrade();
             TradeResponse tradeResponse = tradeApiService.closeTrade(request, JournalController.actualTradeId);
             JournalController.refreshTrade();
-            MainLayoutController.showPush("Trade Closed", JournalController.actualTradeId.toString());
+            MainLayoutController.createPush("Trade Closed", JournalController.actualTradeId.toString());
         });
 
         updateTradeButton = new TCButton("UPDATE TRADE", TCButtonType.OUTLINE);
@@ -50,7 +50,7 @@ public class UpdateTradeController extends TradeController {
             UpdateTradeRequest request = updateTrade();
             TradeResponse trade = tradeApiService.updateTrade(request, JournalController.actualTradeId);
             JournalController.refreshTrade();
-            MainLayoutController.showPush("Trade updated", JournalController.actualTradeId.toString());
+            MainLayoutController.createPush("Trade updated", JournalController.actualTradeId.toString());
         });
 
 

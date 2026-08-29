@@ -17,7 +17,7 @@
     <center>
         <StackPane>
             <StackPane fx:id="contentPane"/>
-            <FlowPane fx:id="dialogContent" alignment="BOTTOM_RIGHT" hgap="-Infinity" vgap="-Infinity"/>
+            <VBox fx:id="dialogContent" alignment="BOTTOM_RIGHT"  pickOnBounds="false"/>
 
         </StackPane>
     </center>

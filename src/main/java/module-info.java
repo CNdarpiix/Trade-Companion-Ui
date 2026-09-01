@@ -45,6 +45,7 @@ module com.charly.tradecompanion.trade_companion_ui {
     opens model.table to com.fasterxml.jackson.databind;
     opens model to com.fasterxml.jackson.databind;
     opens model.trade to com.fasterxml.jackson.databind, javafx.fxml;
+    opens model.trade.snapshot to com.fasterxml.jackson.databind, javafx.fxml;
 
 
 }

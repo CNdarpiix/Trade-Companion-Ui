@@ -1,6 +1,7 @@
 package model.trade;
 
 import lombok.Data;
+import model.trade.snapshot.AnalysisSnapshotResponse;
 import pages.trade.TradeDirection;
 import pages.trade.TradeStatus;
 
@@ -34,5 +35,7 @@ public class TradeResponse {
     private LocalDateTime openedAt;
 
     private LocalDateTime closedAt;
+
+    private AnalysisSnapshotResponse analysis;
 
 }

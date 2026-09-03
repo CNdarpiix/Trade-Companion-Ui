@@ -1,4 +1,4 @@
-package pages.configuration.models.table;
+package model.table;
 
 import model.TimeFrame;
 import lombok.Data;

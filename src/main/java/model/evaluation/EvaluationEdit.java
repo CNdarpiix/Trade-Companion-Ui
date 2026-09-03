@@ -1,4 +1,4 @@
-package pages.configuration.models.evaluation;
+package model.evaluation;
 
 import pages.analysis.AnalysisBias;
 import lombok.Data;

@@ -16,7 +16,6 @@ import java.util.List;
 
 public class DashboardController {
     private final DashboardApiService dashboardApiService = new DashboardApiService();
-    private final SidebardService sidebardService = new SidebardService();
 
     @FXML
     private VBox cardsContainer;
@@ -55,7 +54,8 @@ public class DashboardController {
         );
 
         FlowPane infoMenu = new FlowPane();
-
+        infoMenu.setHgap(15);
+        infoMenu.setVgap(10);
         infoMenu.setAlignment(Pos.CENTER);
         infoMenu.getChildren().addAll(activity, WR, PL);
 
@@ -95,11 +95,13 @@ public class DashboardController {
 
         FlowPane quickLinks = new FlowPane(analysis, journal, stats, configuration);
         quickLinks.setAlignment(Pos.CENTER);
+        quickLinks.setHgap(15);
+        quickLinks.setVgap(10);
 
         cardsContainer.getChildren().add(quickLinks);
     }
 
-    public VBox newQuickLinks(Page page) {
+    private VBox newQuickLinks(Page page) {
         VBox item = ComponentsConfig.createCard();
         item.setOnMouseClicked(event -> {
             SidebardService.navigate(page);

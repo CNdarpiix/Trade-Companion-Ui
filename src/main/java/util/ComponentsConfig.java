@@ -6,9 +6,11 @@ import components.fundation.input.TCInput;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.table.TableResponse;
 import pages.trade.TradeDirection;
 import pages.trade.TradeStatus;
 import model.trade.TradeResponse;
@@ -78,11 +80,8 @@ public final class ComponentsConfig {
 
     public static VBox createProgressCard(String title, Double value , Collection<String> style) {
 
-
-        //  Node card = loader.load();
-
-
         VBox card = createCard();
+
 
 
         card.getChildren().addAll(
@@ -90,26 +89,38 @@ public final class ComponentsConfig {
                 createSeparator(),
                 new ProgressBar(value));
         return card;
-
-
     }
+
+    public static VBox createTableCard(TableResponse table) {
+        VBox tableCard = ComponentsConfig.createCard();
+
+        tableCard.getChildren().add(ComponentsConfig.createLabel(table.getName(), List.of("title-h1", "text-primary")));
+
+        if (!table.getTimeFrames().isEmpty()) {
+
+            ScrollPane scrollPane = new ScrollPane();
+            HBox cardContainer = new HBox();
+
+            cardContainer.setSpacing(10);
+
+            scrollPane.setContent(cardContainer);
+            scrollPane.setFitToHeight(true);
+            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+
+            table.getTimeFrames().forEach(timeFrame -> {
+                cardContainer.getChildren().add(ComponentsConfig.createLabel(timeFrame.getName(), List.of("outline", "button")));
+            });
+            tableCard.getChildren().add(scrollPane);
+        }
+        return tableCard;
+    }
+
 
     public static VBox createCard() {
         VBox card = new VBox();
         card.getStyleClass().add("card");
-
-//        Label infoTitle = new Label(info);
-//        infoTitle.getStyleClass().addAll("title-h3", "text-primary");
-//
-//        Label valueT = new Label(value);
-//        valueT.getStyleClass().addAll("value", "text-primary");
-//
-//        card.getChildren().addAll(infoTitle, valueT);
-//
-//        cardsContainer.getChildren().add(card);
-//        card.prefWidthProperty().bind(
-//                cardsContainer.widthProperty().divide(5)
-//        );
         return card;
     }
 

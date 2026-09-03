@@ -19,7 +19,7 @@ module com.charly.tradecompanion.trade_companion_ui {
 
     opens components.fundation.button to javafx.fxml;
     opens components.fundation.card to javafx.fxml;
-    opens components.fundation.tradeDetail to javafx.fxml;
+    opens components.trading.tradeDetail to javafx.fxml;
     opens components.fundation.header to javafx.fxml;
     opens components.fundation.navitem to javafx.fxml;
     opens components.trading.progresscard to javafx.fxml;
@@ -35,17 +35,12 @@ module com.charly.tradecompanion.trade_companion_ui {
     opens pages.configuration to javafx.fxml;
 
 
-
-    opens pages.configuration.models.evaluation to com.fasterxml.jackson.databind;
-    opens pages.configuration.models.criterion to com.fasterxml.jackson.databind;
-    opens pages.configuration.models.table to com.fasterxml.jackson.databind;
-
-
     opens model.criterion to com.fasterxml.jackson.databind;
     opens model.table to com.fasterxml.jackson.databind;
     opens model to com.fasterxml.jackson.databind;
     opens model.trade to com.fasterxml.jackson.databind, javafx.fxml;
     opens model.trade.snapshot to com.fasterxml.jackson.databind, javafx.fxml;
+    opens model.evaluation to com.fasterxml.jackson.databind;
 
 
 }

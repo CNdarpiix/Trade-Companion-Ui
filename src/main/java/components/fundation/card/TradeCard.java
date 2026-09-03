@@ -1,6 +1,6 @@
 package components.fundation.card;
 
-import components.fundation.tradeDetail.TradeDetail;
+import components.trading.tradeDetail.TradeDetail;
 import model.trade.TradeResponse;
 import pages.journal.JournalController;
 

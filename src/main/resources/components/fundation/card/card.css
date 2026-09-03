@@ -1,7 +1,8 @@
 .card {
     -fx-alignment: "TOP_CENTER";
 
-    -fx-padding: 20;
+    -fx-padding: 10;
+
 
     -fx-background-radius: 12;
 

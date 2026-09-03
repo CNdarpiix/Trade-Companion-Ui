@@ -1,12 +1,10 @@
-package components.fundation.tradeDetail;
+package components.trading.tradeDetail;
 
 import components.fundation.TCDialog.TCDialog;
 import components.fundation.button.TCButtonType;
 import components.fundation.button.TCButton;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.*;
 import layouts.main.MainLayoutController;
@@ -17,7 +15,6 @@ import util.ComponentsConfig;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 import static pages.journal.JournalController.showOverlay;
 
@@ -40,6 +37,7 @@ public class TradeDetail extends VBox {
 
     public TradeDetail(TradeResponse trade) {
         showDetails(trade);
+
     }
 
     /// READ ONLY Mode

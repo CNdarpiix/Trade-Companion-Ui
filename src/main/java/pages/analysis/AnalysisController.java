@@ -2,19 +2,16 @@ package pages.analysis;
 
 import components.fundation.card.Card;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.DashBoardResponse;
 import model.TimeFrame;
 import model.criterion.CriterionDashboardResponse;
 import model.table.TableDashboardResponse;
-import pages.configuration.models.criterion.CriterionResponse;
-import pages.configuration.models.evaluation.EvaluationResponse;
+import model.evaluation.EvaluationResponse;
 import pages.dashboard.DashboardApiService;
 import util.ComponentsConfig;
 
-import java.sql.Time;
 import java.util.List;
 
 

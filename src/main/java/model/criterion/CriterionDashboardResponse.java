@@ -1,6 +1,6 @@
 package model.criterion;
 
-import pages.configuration.models.evaluation.*;
+import model.evaluation.EvaluationResponse;
 import lombok.Data;
 
 import java.util.ArrayList;

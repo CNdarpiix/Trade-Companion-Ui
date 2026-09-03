@@ -2,7 +2,6 @@ package pages.journal;
 
 import components.fundation.button.TCButton;
 import components.fundation.button.TCButtonType;
-import components.fundation.tradeDetail.TradeDetail;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;

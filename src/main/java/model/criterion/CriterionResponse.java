@@ -1,4 +1,4 @@
-package pages.configuration.models.criterion;
+package model.criterion;
 
 
 import lombok.Data;

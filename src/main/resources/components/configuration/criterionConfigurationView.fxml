@@ -6,9 +6,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="components.configuration.CriterionConfigurationController"
-            prefHeight="400.0" prefWidth="600.0">
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="components.configuration.CriterionConfigurationController"
+      prefHeight="400.0" prefWidth="600.0" fx:id="contentBox">
+    <ScrollPane
+            fitToHeight="true"
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED">
 
-</AnchorPane>
+        <content>
+            <VBox spacing="10" fx:id="scrollBox">
+                <!-- Cards -->
+            </VBox>
+        </content>
+
+    </ScrollPane>
+</HBox>

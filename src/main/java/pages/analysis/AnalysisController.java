@@ -35,7 +35,7 @@ public class AnalysisController {
         dashboard = dashboardApi.getDashboard();
 //        if (!dashboard.getTables().isEmpty())
 //            loadPage(dashboard.getTables().getFirst());
-
+///Filtrer les tables n'ayant pas de criterion
         loadPage(test());
 
         /// Faire un GEt de tableDashboardResponse et CriterionDashboardResponse

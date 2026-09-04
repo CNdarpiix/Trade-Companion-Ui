@@ -1,15 +1,15 @@
 package util;
 
+import components.fundation.button.TCButton;
+import components.fundation.button.TCButtonType;
 import components.fundation.card.Card;
 import components.fundation.card.TradeCard;
 import components.fundation.input.TCInput;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.criterion.CriterionResponse;
 import model.table.TableResponse;
 import pages.trade.TradeDirection;
 import pages.trade.TradeStatus;
@@ -32,10 +32,10 @@ public final class ComponentsConfig {
         return textLabel;
     }
 
-    public static VBox createLabel(String texte , String optionalTexte , Collection<String> styleClass , Collection<String> optionalStyleClass){
+    public static VBox createLabel(String texte, String optionalTexte, Collection<String> styleClass, Collection<String> optionalStyleClass) {
         if (optionalTexte.isEmpty())
-            return new VBox(createLabel(texte , styleClass));
-        return new VBox(createLabel(texte , styleClass) , createLabel(optionalTexte , optionalStyleClass) );
+            return new VBox(createLabel(texte, styleClass));
+        return new VBox(createLabel(texte, styleClass), createLabel(optionalTexte, optionalStyleClass));
     }
 
     public static Separator createSeparator() {
@@ -78,10 +78,9 @@ public final class ComponentsConfig {
         return card;
     }
 
-    public static VBox createProgressCard(String title, Double value , Collection<String> style) {
+    public static VBox createProgressCard(String title, Double value, Collection<String> style) {
 
         VBox card = createCard();
-
 
 
         card.getChildren().addAll(
@@ -92,7 +91,7 @@ public final class ComponentsConfig {
     }
 
     public static VBox createTableCard(TableResponse table) {
-        VBox tableCard = ComponentsConfig.createCard();
+        VBox tableCard = createCard();
 
         tableCard.getChildren().add(ComponentsConfig.createLabel(table.getName(), List.of("title-h1", "text-primary")));
 
@@ -117,14 +116,26 @@ public final class ComponentsConfig {
         return tableCard;
     }
 
+    public static VBox createCriterionCard(CriterionResponse criterion , String tableName) {
+        VBox criterionCard = createCard();
+
+        TCButton tableButton = new TCButton(tableName , TCButtonType.OUTLINE);
+
+        criterionCard.getChildren().addAll(
+                createLabel(criterion.getName(), List.of("title-h1", "text-primary")),
+                createLabel("Impact coef" + criterion.getCoefficient(), List.of("title-h3", "text-secondary")),
+                tableButton
+        );
+
+        return criterionCard;
+    }
+
 
     public static VBox createCard() {
         VBox card = new VBox();
         card.getStyleClass().add("card");
         return card;
     }
-
-
 
 
 }

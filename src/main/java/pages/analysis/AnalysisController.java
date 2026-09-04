@@ -33,8 +33,8 @@ public class AnalysisController {
 
         DashboardApiService dashboardApi = new DashboardApiService();
         dashboard = dashboardApi.getDashboard();
-        if (!dashboard.getTables().isEmpty())
-            loadPage(dashboard.getTables().getFirst());
+//        if (!dashboard.getTables().isEmpty())
+//            loadPage(dashboard.getTables().getFirst());
 
         loadPage(test());
 

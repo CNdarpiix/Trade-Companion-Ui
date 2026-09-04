@@ -11,6 +11,7 @@ module com.charly.tradecompanion.trade_companion_ui {
     requires java.smartcardio;
     requires java.sql;
     requires com.fasterxml.jackson.datatype.jsr310;
+    requires jdk.compiler;
 
     exports app;
 
@@ -23,6 +24,7 @@ module com.charly.tradecompanion.trade_companion_ui {
     opens components.fundation.header to javafx.fxml;
     opens components.fundation.navitem to javafx.fxml;
     opens components.trading.progresscard to javafx.fxml;
+    opens components.configuration to javafx.fxml;
 
     opens navigation to javafx.fxml;
 

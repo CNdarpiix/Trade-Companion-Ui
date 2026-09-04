@@ -42,4 +42,8 @@ public class TCInput extends VBox {
         errorText.setVisible(t);
     }
 
+    public boolean isError(){
+        return errorText.isVisible();
+    }
+
 }

@@ -46,6 +46,7 @@ public class ConfigurationApiService {
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ApiConfig.BASE_URL + "/table"))
+                    .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(json))
                     .build();
 
@@ -61,6 +62,7 @@ public class ConfigurationApiService {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ApiConfig.BASE_URL + "/table/" + id))
+                    .header("Content-Type", "application/json")
                     .DELETE()
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -76,6 +78,7 @@ public class ConfigurationApiService {
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ApiConfig.BASE_URL + "/table/" + id))
+                    .header("Content-Type", "application/json")
                     .PUT(HttpRequest.BodyPublishers.ofString(json))
                     .build();
 
@@ -127,6 +130,7 @@ public class ConfigurationApiService {
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ApiConfig.BASE_URL + "/criterion"))
+                    .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(json))
                     .build();
 
@@ -142,6 +146,7 @@ public class ConfigurationApiService {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ApiConfig.BASE_URL + "/criterion/" + id))
+                    .header("Content-Type", "application/json")
                     .DELETE()
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -157,6 +162,7 @@ public class ConfigurationApiService {
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ApiConfig.BASE_URL + "/criterion/" + id))
+                    .header("Content-Type", "application/json")
                     .PUT(HttpRequest.BodyPublishers.ofString(json))
                     .build();
 

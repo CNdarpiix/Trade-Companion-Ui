@@ -6,21 +6,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
+<HBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="components.configuration.TableConfigurationController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0" fx:id="contentBox">
+
+
+
+
     <ScrollPane
             fitToHeight="true"
-            hbarPolicy="AS_NEEDED"
-            vbarPolicy="NEVER">
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED">
 
         <content>
-            <HBox spacing="10" fx:id="scrollBox">
+            <VBox spacing="10" fx:id="scrollBox">
                 <!-- Cards -->
-            </HBox>
+            </VBox>
         </content>
 
     </ScrollPane>
 
-</VBox>
+</HBox>

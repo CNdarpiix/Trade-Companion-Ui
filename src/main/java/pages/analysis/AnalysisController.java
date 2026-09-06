@@ -12,6 +12,7 @@ import model.evaluation.EvaluationResponse;
 import pages.dashboard.DashboardApiService;
 import util.ComponentsConfig;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,15 +34,12 @@ public class AnalysisController {
 
         DashboardApiService dashboardApi = new DashboardApiService();
         dashboard = dashboardApi.getDashboard();
-//        if (!dashboard.getTables().isEmpty())
-//            loadPage(dashboard.getTables().getFirst());
-///Filtrer les tables n'ayant pas de criterion
-        loadPage(test());
+        List<TableDashboardResponse> tables = new ArrayList<>(dashboard.getTables().stream().filter(table -> !table.getCriteria().isEmpty()).toList());
 
-        /// Faire un GEt de tableDashboardResponse et CriterionDashboardResponse
+        loadPage(tables);
     }
 
-    private void loadPage(TableDashboardResponse table) {
+    private void loadPage(List<TableDashboardResponse> tables) {
 
         dashboardContent = new Card();
         dashboardContent.getChildren().add(ComponentsConfig.createLabel("Analysis dashboard", List.of("title-h3", "text-primary")));
@@ -50,6 +48,15 @@ public class AnalysisController {
         analysisTable = new Card();
         analysisTable.getChildren().add(ComponentsConfig.createLabel("Analysis ", List.of("title-h1", "text-primary")));
 
+        if (!tables.isEmpty())
+            tables.forEach(table -> analysisTable.getChildren().add(createTable(table)));
+
+        analysisContent.getChildren().addAll(dashboardContent, analysisTable);
+
+
+    }
+
+    private GridPane createTable(TableDashboardResponse table) {
         GridPane tableGrid = new GridPane((table.getCriteria().getFirst().getEvaluations().size()) + 1, (table.getCriteria().size()) + 1);
 
         int v = 1;
@@ -64,35 +71,9 @@ public class AnalysisController {
             tableGrid.add(ComponentsConfig.createLabel(tf.getName(), List.of("title-h3", "text-primary")), h, 0);
             h++;
         }
-
-
-        analysisTable.getChildren().add(tableGrid);
-        analysisContent.getChildren().addAll(dashboardContent, analysisTable);
-
-
+        return tableGrid;
     }
 
 
-    private TableDashboardResponse test() {
-        TimeFrame tm1 = new TimeFrame();
-        tm1.setCoefficient(1.0);
-        tm1.setName("1 minute");
-        tm1.setId(1L);
-
-        EvaluationResponse evaluation = new EvaluationResponse();
-        evaluation.setCriterionId(1L);
-        evaluation.setTimeFrameId(1L);
-
-        CriterionDashboardResponse criterion = new CriterionDashboardResponse();
-        criterion.setId(1L);
-        criterion.setName("Structure");
-        criterion.setEvaluations(List.of(evaluation));
-
-        TableDashboardResponse table = new TableDashboardResponse();
-        table.setCriteria(List.of(criterion));
-        table.setTimeFrames(List.of(tm1));
-
-        return table;
-    }
 }
 

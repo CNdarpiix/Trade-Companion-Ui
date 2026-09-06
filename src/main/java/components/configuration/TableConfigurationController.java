@@ -42,7 +42,7 @@ public class TableConfigurationController {
             ConfigurationController.getBackButton().setVisible(true);
 
         });
-        contentBox.getChildren().addAll(creaeteTable , refreshScrollList());
+        contentBox.getChildren().setAll(refreshScrollList(), creaeteTable);
     }
 
 

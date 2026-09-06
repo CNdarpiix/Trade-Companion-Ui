@@ -52,7 +52,7 @@ public class CriterionConfigurationController {
             }
         });
 
-        contentBox.getChildren().addAll(refreshCriterionList() , createCriterion);
+        contentBox.getChildren().setAll(refreshCriterionList(), createCriterion);
 
 
     }

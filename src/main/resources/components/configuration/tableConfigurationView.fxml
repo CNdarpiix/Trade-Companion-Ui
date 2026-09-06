@@ -14,17 +14,6 @@
 
 
 
-    <ScrollPane
-            fitToHeight="true"
-            hbarPolicy="NEVER"
-            vbarPolicy="AS_NEEDED">
 
-        <content>
-            <VBox spacing="10" fx:id="scrollBox">
-                <!-- Cards -->
-            </VBox>
-        </content>
-
-    </ScrollPane>
 
 </HBox>

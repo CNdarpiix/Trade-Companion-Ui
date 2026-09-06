@@ -8,13 +8,17 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 import javafx.scene.Parent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.scene.layout.*;
+import lombok.Getter;
+import util.ComponentsConfig;
+
+import java.util.List;
 
 public class ConfigurationController {
 
     @FXML
-    private HBox headerBox;
+    private VBox headerBox;
 
     @FXML
     private StackPane contentBox;
@@ -23,6 +27,15 @@ public class ConfigurationController {
 
     private Parent criterionSettings;
 
+    private HBox buttonsBox;
+
+    private HBox titleBox;
+
+    private Label title;
+
+    @Getter
+    private static TCButton backButton;
+
     @FXML
     public void initialize() {
         loadContent();
@@ -30,27 +43,40 @@ public class ConfigurationController {
     }
 
     private void loadHeader() {
+
         TCButton tableEdit = new TCButton("TABLES", TCButtonType.OUTLINE);
         tableEdit.setOnMouseClicked(event -> {
             contentBox.getChildren().setAll(tableSettings);
+            title.setText("TABLE");
         });
 
         TCButton criterionEdit = new TCButton("CRITERIONS", TCButtonType.OUTLINE);
         criterionEdit.setOnMouseClicked(event -> {
             contentBox.getChildren().setAll(criterionSettings);
+            title.setText("CRITERION");
         });
 
         TCButton themeEdit = new TCButton("THEME", TCButtonType.OUTLINE);
 
-        headerBox.getChildren().addAll(tableEdit, criterionEdit, themeEdit);
-        headerBox.setAlignment(Pos.CENTER);
-        headerBox.setSpacing(15);
-        headerBox.setPadding(new Insets(20));
+        buttonsBox = new HBox(tableEdit, criterionEdit, themeEdit);
+        buttonsBox.setAlignment(Pos.CENTER);
+        buttonsBox.setSpacing(15);
+        buttonsBox.setPadding(new Insets(20));
+
+        title = ComponentsConfig.createLabel("SETTINGS" , List.of("title-h1","text-primary"));
+
+        backButton = new TCButton("<", TCButtonType.OUTLINE);
+        backButton.setVisible(false);
+
+        Region region = new Region();
+        HBox.setHgrow(region, Priority.ALWAYS);
+        titleBox = new HBox(title, region, backButton);
+
+        headerBox.getChildren().addAll(buttonsBox, ComponentsConfig.createSeparator(), titleBox);
     }
 
     private void loadContent() {
         try {
-
             FXMLLoader tableConfigurationView = new FXMLLoader(getClass().getResource("/components/configuration/tableConfigurationView.fxml"));
             tableSettings = tableConfigurationView.load();
 

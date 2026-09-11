@@ -43,7 +43,33 @@ public class TableEdit extends VBox {
     private final ConfigurationApiService service  = new ConfigurationApiService();
 
     public TableEdit() {
+            loadTfEdit();
+            loadTableEdit();
+
+
+    }
+
+    public TableEdit(TableResponse tableResponse){
+        loadRead(tableResponse);
+    }
+
+
+
+    private void loadRead(TableResponse tableResponse){
+        timeFrames = new FlowPane();
+        timeFrameList = new ArrayList<>(tableResponse.getTimeFrames());
+        refreshTimeframes();
+
+        getChildren().setAll(
+                ComponentsConfig.createLabel(tableResponse.getName() , List.of("title-h2" , "text-primary")) ,
+                timeFrames
+                );
+    }
+
+    private void loadTableEdit(){
         name = new TCInput("Table Name", InputType.TEXT, "Need a name");
+
+
 
         createTableButton = new TCButton("CREATE TABLE", TCButtonType.OUTLINE);
         createTableButton.setOnMouseClicked(event -> {
@@ -73,13 +99,11 @@ public class TableEdit extends VBox {
 
         });
 
-        loadTfEdit();
 
-        getChildren().addAll(name, timeFramesBox, createTableButton);
+        getChildren().setAll(name, timeFramesBox, createTableButton);
     }
 
-
-    public void loadTfEdit() {
+    private void loadTfEdit() {
 
         timeFrames = new FlowPane();
         timeFrameList = new ArrayList<TimeFrame>();

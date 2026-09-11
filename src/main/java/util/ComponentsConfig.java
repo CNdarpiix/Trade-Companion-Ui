@@ -8,6 +8,7 @@ import components.fundation.input.TCInput;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.criterion.CriterionResponse;
 import model.table.TableResponse;
@@ -16,6 +17,7 @@ import pages.trade.TradeStatus;
 import model.trade.TradeResponse;
 
 
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.List;
 

@@ -13,6 +13,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 import static util.HttpClientUtil.getClient;
@@ -122,6 +123,23 @@ public class ConfigurationApiService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<CriterionResponse> getAllCrterionStreamByIds(List<Long> tableIdList) {
+        List<CriterionResponse> responseList = getAllCriterion();
+        List<CriterionResponse> criterionResponsesList = new ArrayList<>();
+
+        tableIdList.forEach(id -> {
+            criterionResponsesList.addAll(
+                    responseList
+                            .stream()
+                            .filter(criterion -> {
+                                return criterion.getId().equals(id);
+                            })
+                            .toList()
+            );
+        });
+        return criterionResponsesList;
     }
 
     public CriterionResponse createCriterion(CreateCriterion createCriterion) {

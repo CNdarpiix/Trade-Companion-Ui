@@ -72,6 +72,31 @@
     -fx-font-size: 11px;
 
 }
+.readoverlay {
+    -fx-background-color: rgba(255, 255, 255, 0.82);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(0, 0, 0, 0.08);
+
+    -fx-border-width: 1;
+    -fx-border-radius: 14;
+    -fx-padding: 10 16;
+    -fx-spacing: 10;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0, 0, 0, 0.12),
+            18,
+            0.2,
+            0,
+            5
+    );
+}
+
+.readoverlay .label {
+    -fx-text-fill: rgba(0, 0, 0, 0.75);
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
 
 /* ===========================
    Utility

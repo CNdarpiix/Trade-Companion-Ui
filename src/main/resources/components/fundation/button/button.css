@@ -97,6 +97,19 @@
 
 }
 
+/* OVERLAY */
+
+
+
+.readoverlay .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(0, 0, 0, 0.75);
+    -fx-background-radius: 10;
+    -fx-padding: 8 14;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
 
 
 /* states */
@@ -114,4 +127,13 @@
 
     -fx-opacity: .45;
 
+}
+
+
+.readoverlay .button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.06);
+}
+
+.readoverlay .button:pressed {
+    -fx-background-color: rgba(0, 0, 0, 0.10);
 }

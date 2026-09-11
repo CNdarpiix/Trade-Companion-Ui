@@ -10,5 +10,6 @@ public enum TCButtonType {
     WARNING,
     IMAGE,
     CARD ,
-    OUTLINE
+    OUTLINE,
+    READOVERLAY
 }
